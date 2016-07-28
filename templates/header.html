@@ -1,11 +1,18 @@
-<div class="row top-menu">
+<div class="row top-menu" style="padding-bottom:0px">
 	<div class="col-md-6">
 		<a href="{{url_for('showRestaurants')}}">
 			<span class="glyphicon glyphicon-home" aria-hidden="true"></span>Show All Restaurants
 		</a>
 	</div>
 	<div class="col-md-6 text-right">
-					<p>Login Link will go Here </p>
-		
+		{% if 'username' not in session %}
+			<a href="{{url_for('showLogin')}}">Click Here to Login</a>
+		{% else %}
+			<figure class="creator">
+				<img src="{{ user.picture }}">
+				<figcaption style="margin-top:-60px;margin-right:100px;padding:5px">{{ user.name }}</figcaption>
+				<a href="{{url_for('disconnect')}}" style="margin-right:100px;font-size:12px;font-weight:bold">Logout?</a>
+			</figure>
+		{% endif %}
 	</div>
 </div>
